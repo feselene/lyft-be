@@ -6,7 +6,7 @@ const axios = require('axios');
 const GOOGLE_MAPS_API_KEY = process.env.GOOGLE_MAPS_API_KEY;
 
 // Function to get real-time location data
-exports.getRealTimeLocation = async (req, res) => {
+exports.getExamples = async (req, res) => {
   const { latitude, longitude } = req.query;
 
   if (!latitude || !longitude) {
@@ -29,7 +29,7 @@ exports.getRealTimeLocation = async (req, res) => {
       res.status(500).json({ error: 'Failed to retrieve location data' });
     }
   } catch (error) {
-    console.error('Error fetching location data:', error);
+    console.error('Error fetching location data:', error.response?.data || error.message);
     res.status(500).json({ error: 'An error occurred while fetching location data' });
   }
 };
